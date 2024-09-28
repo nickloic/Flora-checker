@@ -51,7 +51,9 @@ export default function Body() {
         const project = 'all';
 
         try {
-            const response = await fetch(`https://my-api.plantnet.org/v2/identify/${project}?include-related-images=true&api-key=2b10YouylhgL4skSmYUoRjIb8&lang=fr`, {
+            const apiKey = process.env.REACT_APP_PLANTNET_API_KEY;
+            
+            const response = await fetch(`https://my-api.plantnet.org/v2/identify/${project}?include-related-images=true&api-key=${apiKey}&lang=fr`, {
                 method: 'POST',
                 body: form,
             });
