@@ -305,7 +305,9 @@ export default function Body() {
                         <input type="file" id="imagesm" accept="image/*" className='hidden image' />
                     </label>
                 </div>
-                <img src='images/img3.jpg' className='rounded relative top-40' />
+                {
+                    previewImage ? null : <img src='images/img3.jpg' className='rounded relative top-40' />
+                }
             </div>
         </div>
     )
