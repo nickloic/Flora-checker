@@ -19,7 +19,7 @@ export default function Navbar() {
                     <div className='w-fit h-fit border-2 rounded-full border-soft-black p-2'>
                         <FaIcons.FaHeart />
                     </div>
-                    <button>Contact us</button>
+                    <button><a href='https://portfolio-loic-nick.vercel.app/' target='blank' className='text-soft-green'>Contacter le devellopeur</a></button>
                 </div>
             </div>
             {/* ecrant sm */}
@@ -29,8 +29,11 @@ export default function Navbar() {
                         <FaIcons.FaLeaf className='text-soft-green' />
                         <p>Flora-checker</p>
                     </div>
-                    <div className='w-fit h-fit p-3 border-2 border-soft-black rounded-full'>
-                        <FaIcons.FaHeart />
+                    <div className='flex flex-row gap-1 items-center justify-center text-xs'>
+                        <button><a href='https://portfolio-loic-nick.vercel.app/' target='blank' className='text-soft-green'>Contacter le devellopeur</a></button>
+                        <div className='w-fit h-fit '>
+                            <FaIcons.FaHeart className='text-xs'/>
+                        </div>
                     </div>
                 </div>
             </div>
