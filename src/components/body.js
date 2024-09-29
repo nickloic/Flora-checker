@@ -261,7 +261,7 @@ export default function Body() {
 
                 {/* div resultats */}
                 <div>
-                    <motion.div className='fixed flex z-20 w-full p-3 flex-col bg-white h-2/5 bottom-0 rounded-t-3xl'
+                    <motion.div className='fixed flex z-20 w-full p-3 flex-col bg-white h-2/5 bottom-20 rounded-t-3xl'
                         variants={resultVariants}
                         initial='hidden'
                         animate={viewResult ? 'visible' : null}
