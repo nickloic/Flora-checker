@@ -185,7 +185,7 @@ export default function Body() {
                 </motion.div>
 
                 {/* troisieme */}
-                <motion.div className='absolute flex z-20 w-11/12 p-3 flex-col bg-white h-2/5 bottom-0 left-16 rounded-t-3xl'
+                <motion.div className='text-sm absolute flex z-20 w-11/12 p-3 flex-col bg-white h-2/5 bottom-0 left-16 rounded-t-3xl'
                     variants={resultVariants}
                     initial='hidden'
                     animate={viewResult ? 'visible' : null}
@@ -272,7 +272,7 @@ export default function Body() {
 
                 {/* div resultats */}
                 <div>
-                    <motion.div className='fixed flex z-20 h-fit w-11/12 p-3 flex-col bg-white bottom-20 rounded-t-3xl'
+                    <motion.div className='text-sm fixed flex z-20 h-fit w-11/12 p-3 flex-col bg-white bottom-20 rounded-t-3xl'
                         variants={resultVariants}
                         initial='hidden'
                         animate={viewResult ? 'visible' : null}
