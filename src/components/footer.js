@@ -22,11 +22,11 @@ export default function Footer() {
     </div>
     {/* ecrant sm */}
     <div className='hidden max-sm:block'>
-      <div className='flex w-10/12 backdrop-blur-sm bg-white/30 text-soft-black p-3 text-3xl justify-between rounded-full fixed bottom-5 left-8 shadow-lg'>
+      {/* <div className='flex w-10/12 backdrop-blur-sm bg-white/30 text-soft-black p-3 text-3xl justify-between rounded-full fixed bottom-5 left-8 shadow-lg'>
         <div><FaIcons.FaHome/></div>
         <div><FaIcons.FaCamera/></div>
         <div><FaIcons.FaSearch/></div>
-      </div>
+      </div> */}
     </div>
    </div>
   )

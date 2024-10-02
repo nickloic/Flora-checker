@@ -37,7 +37,7 @@ export default function Body() {
         setresultData({})
         console.log('requette en cours...');
         setreqPending(true)
-        
+
         const form = new FormData();
         const iptImages = document.querySelectorAll('.image')
         iptImages.forEach(async (img) => {
@@ -52,27 +52,32 @@ export default function Body() {
 
         try {
             const apiKey = process.env.REACT_APP_PLANTNET_API_KEY;
-            
+
             const response = await fetch(`https://my-api.plantnet.org/v2/identify/${project}?include-related-images=true&api-key=${apiKey}&lang=fr`, {
                 method: 'POST',
                 body: form,
             });
-            console.log(response);
+            // console.log(response);
             if (response.status === 200) {
                 console.log('reponses disponibles');
                 setreqPending(false)
-                
+
             } else if (response.status === 404) {
                 alert(' Espece non trouvée :( \n Importez une nouvelle photo')
                 document.querySelectorAll('.preview').forEach(prevs => {
-                    prevs.src = ''})
+                    prevs.src = ''
+                })
             }
 
             const data = await response.json();
+            // console.log(data);
+            // console.log(data.results[0].species.scientificNameWithoutAuthor);
+
 
             let scores = Math.round((data.results[0].score) * 100)
 
             setresultData(data)
+
             toggleViewResult(scores)
 
         } catch (error) {
@@ -150,7 +155,7 @@ export default function Body() {
 
     return (
         <div>
-            {reqPending ? <Loader/> : null}
+            {reqPending ? <Loader /> : null}
             <div className='max-sm:hidden'>
                 {/* premierer div */}
 
@@ -188,11 +193,17 @@ export default function Body() {
                     <div className='w-full justify-center flex flex-col'>
                         <div>
                             <h1>
-                                Noms famillier : {resultData.results ? resultData.results[0].species.commonNames.map((val, id) => (
+                                Noms scientifique : {resultData.results ? <span className='text-soft-green'>{resultData.results[0].species.scientificNameWithoutAuthor}</span> : null}
+                            </h1>
+                            <h1>
+                                de la famille des : {resultData.results ? <span className='text-soft-green'>{resultData.results[0].species.family.scientificNameWithoutAuthor}</span> : null}
+                            </h1>
+                            <h1 className='flex gap-2'>
+                                Noms famillier : {resultData.results ? resultData.results[0].species.commonNames.length > 0 ? resultData.results[0].species.commonNames.map((val, id) => (
                                     <span key={id}>
                                         {' - '}<span className='text-soft-green'>{val}</span>
                                     </span>
-                                )) : null}
+                                )) : <span className='opacity-50 flex items-center gap-2'><FaIcons.FaInfoCircle />inconu</span> : null}
                             </h1>
                             <h1>
                                 Niveau de confiance : {<span className='text-soft-green'><span className='counter'>0</span> %</span>}
@@ -261,20 +272,26 @@ export default function Body() {
 
                 {/* div resultats */}
                 <div>
-                    <motion.div className='fixed flex z-20 h-fit w-full p-3 flex-col bg-white bottom-20 rounded-t-3xl'
+                    <motion.div className='fixed flex z-20 h-fit w-11/12 p-3 flex-col bg-white bottom-20 rounded-t-3xl'
                         variants={resultVariants}
                         initial='hidden'
                         animate={viewResult ? 'visible' : null}
-                        // animate = 'visible'
+                    // animate = 'visible'
                     >
                         <div className='w-full justify-center flex flex-col'>
                             <div>
                                 <h1>
-                                    Noms famillier : {resultData.results ? resultData.results[0].species.commonNames.map((val, id) => (
+                                    Noms scientifique : {resultData.results ? <span className='text-soft-green'>{resultData.results[0].species.scientificNameWithoutAuthor}</span> : null}
+                                </h1>
+                                <h1>
+                                    de la famille des : {resultData.results ? <span className='text-soft-green'>{resultData.results[0].species.family.scientificNameWithoutAuthor}</span> : null}
+                                </h1>
+                                <h1 className=''>
+                                    Noms famillier : {resultData.results ? resultData.results[0].species.commonNames.length > 0 ? resultData.results[0].species.commonNames.map((val, id) => (
                                         <span key={id}>
                                             {' - '}<span className='text-soft-green'>{val}</span>
                                         </span>
-                                    )) : null}
+                                    )) : <span className='opacity-50 flex items-center gap-2'><FaIcons.FaInfoCircle />inconnu</span> : null}
                                 </h1>
                                 <h1>
                                     Niveau de confiance : {<span className='text-soft-green'><span className='counter'>0</span> %</span>}
